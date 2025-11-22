@@ -14,7 +14,7 @@ int n;
 
 int nb_threads(int taille_tableau) {
     if (taille_tableau <= 2) return 1;
-    return (taille_tableau - 1) / 2;
+    return taille_tableau / 2;
 }
 
 typedef struct {
@@ -24,12 +24,10 @@ typedef struct {
     int *swapped;
 } thread_data_t;
 
-void compare_swap(int *a, int *b) {
-    if (*a > *b) {
-        int temp = *a;
-        *a = *b;
-        *b = temp;
-    }
+void swap(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
 }
 
 void* phase_thread(void* arg) {
@@ -41,7 +39,7 @@ void* phase_thread(void* arg) {
         int start = thread_id * 2;
         for (int j = start; j < n - 1; j += num_threads * 2) {
             if (a[j] > a[j + 1]) {
-                compare_swap(&a[j], &a[j + 1]);
+                swap(&a[j], &a[j + 1]);
                 *(data->swapped) = 1;
             }
         }
@@ -49,7 +47,7 @@ void* phase_thread(void* arg) {
         int start = thread_id * 2 + 1;
         for (int j = start; j < n - 1; j += num_threads * 2) {
             if (a[j] > a[j + 1]) {
-                compare_swap(&a[j], &a[j + 1]);
+                swap(&a[j], &a[j + 1]);
                 *(data->swapped) = 1;
             }
         }
