@@ -1,0 +1,4 @@
+*.o
+Shell/lex.c
+Shell/parse.c
+Shell/shell
