@@ -209,7 +209,7 @@ void* increment(void* arg) {
 
 
 #slide(title: "Récapitulatif processus vs threads")[
-  #align(center)[
+  #scale(225%, origin:left)[#align(center)[
     #tablex(
     columns:3,
     align:center,
@@ -221,7 +221,7 @@ void* increment(void* arg) {
     [Identité], [*PID*], [`pthread_t`],
     hlinex(end:0)
   )
-  ]  
+  ]]  
 ]
 
 #focus-slide[
